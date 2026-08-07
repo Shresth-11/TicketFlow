@@ -39,7 +39,7 @@ export const SignupPage = () => {
             <LifeBuoy className="w-5 h-5 text-white" />
           </div>
           <h1 className="text-2xl font-serif font-bold text-black tracking-tight">Create Account</h1>
-          <p className="text-xs text-slate-700 font-medium">Join ResolvIT Service Desk</p>
+          <p className="text-xs text-slate-700 font-medium">Join TicketFlow Service Desk</p>
         </div>
 
         {/* Error alert */}

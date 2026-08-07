@@ -40,7 +40,7 @@ export const SplashScreen = ({ onFinish }) => {
 
           <div>
             <h2 className="text-2xl font-serif font-bold text-red-600 tracking-tight">
-              ResolvIT
+              TicketFlow
             </h2>
             <p className="text-[11px] font-mono font-bold text-slate-700 mt-1 uppercase tracking-widest">
               Service Desk OS v2.6

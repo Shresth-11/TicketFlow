@@ -52,7 +52,7 @@ export const LandingPage = () => {
               <LifeBuoy className="w-4 h-4 text-white" />
             </div>
             <span className="text-2xl font-serif font-bold text-red-600 tracking-tight">
-              ResolvIT
+              TicketFlow
             </span>
           </div>
 
@@ -122,7 +122,7 @@ export const LandingPage = () => {
                 The way you manage IT support is about to change forever
               </h1>
               <p className="text-xs sm:text-sm font-medium text-slate-700 max-w-lg mx-auto">
-                ResolvIT streamlines corporate helpdesks with automated ticket triage, SLA priority routing, and slide-over inspector workflows.
+                TicketFlow streamlines corporate helpdesks with automated ticket triage, SLA priority routing, and slide-over inspector workflows.
               </p>
             </div>
 
@@ -348,7 +348,7 @@ export const LandingPage = () => {
       <footer className="mt-auto border-t-2 border-black bg-white py-6 text-xs text-black">
         <div className="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3 font-medium">
           <div className="flex items-center gap-2">
-            <span className="font-serif font-bold text-red-600 text-sm">ResolvIT</span>
+            <span className="font-serif font-bold text-red-600 text-sm">TicketFlow</span>
             <span>— Java 17 Spring Boot + React 18</span>
           </div>
           <div className="font-mono text-[11px] text-slate-700">
