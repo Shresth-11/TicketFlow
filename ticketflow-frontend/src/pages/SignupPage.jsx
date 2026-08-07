@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
-import { AlertCircle } from 'lucide-react';
+import { AlertCircle, LifeBuoy } from 'lucide-react';
 
 export const SignupPage = () => {
   const [fullName, setFullName] = useState('');
@@ -11,7 +11,7 @@ export const SignupPage = () => {
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
 
-  const { signup } = useAuth();
+  const { register } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
@@ -20,7 +20,7 @@ export const SignupPage = () => {
     setLoading(true);
 
     try {
-      await signup(email, password, fullName, role);
+      await register(fullName, email, password, role);
       navigate('/dashboard');
     } catch (err) {
       setError(err.response?.data?.message || 'Failed to create account');
@@ -30,87 +30,90 @@ export const SignupPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-100 flex items-center justify-center p-4">
-      <div className="w-full max-w-sm bg-white border border-slate-200 rounded-lg shadow-sm p-6 space-y-5">
+    <div className="min-h-screen bg-[#08080a] flex items-center justify-center p-4">
+      <div className="w-full max-w-sm bg-[#101014] border border-[#20202a] rounded-xl shadow-2xl p-6 space-y-5">
         
-        <div className="text-center space-y-1">
-          <div className="w-9 h-9 rounded-md bg-blue-600 text-white font-bold text-base flex items-center justify-center mx-auto mb-2">
-            TF
+        {/* Header */}
+        <div className="text-center space-y-1.5">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-violet-600 to-indigo-500 text-white font-bold text-base flex items-center justify-center mx-auto mb-3 shadow-md shadow-violet-600/20">
+            <LifeBuoy className="w-5 h-5 text-white" />
           </div>
-          <h1 className="text-lg font-bold text-slate-900">Create an Account</h1>
-          <p className="text-xs text-slate-500">Register for IT Service Desk access</p>
+          <h1 className="text-xl font-bold text-white tracking-tight">Create Account</h1>
+          <p className="text-xs text-slate-400">Join TicketFlow Service Desk</p>
         </div>
 
+        {/* Error alert */}
         {error && (
-          <div className="flex items-center gap-2 p-2.5 bg-rose-50 border border-rose-200 text-rose-700 text-xs rounded-md">
+          <div className="flex items-center gap-2 p-2.5 bg-rose-500/10 border border-rose-500/20 text-rose-400 text-xs rounded-lg">
             <AlertCircle className="w-4 h-4 shrink-0" />
             <span>{error}</span>
           </div>
         )}
 
+        {/* Form */}
         <form onSubmit={handleSubmit} className="space-y-3 text-xs">
           <div>
-            <label className="block font-medium text-slate-700 mb-1">Full Name</label>
+            <label className="block font-medium text-slate-300 mb-1">Full Name</label>
             <input
               type="text"
               required
-              placeholder="John Doe"
+              placeholder="Sarah Jenkins"
               value={fullName}
               onChange={(e) => setFullName(e.target.value)}
-              className="w-full bg-white border border-slate-300 rounded-md px-3 py-2 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-600"
+              className="w-full bg-[#14141d] border border-[#242432] rounded-lg px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-violet-500 transition-colors"
             />
           </div>
 
           <div>
-            <label className="block font-medium text-slate-700 mb-1">Work Email</label>
+            <label className="block font-medium text-slate-300 mb-1">Email address</label>
             <input
               type="email"
               required
-              placeholder="john@company.com"
+              placeholder="sarah@company.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full bg-white border border-slate-300 rounded-md px-3 py-2 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-600"
+              className="w-full bg-[#14141d] border border-[#242432] rounded-lg px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-violet-500 transition-colors"
             />
           </div>
 
           <div>
-            <label className="block font-medium text-slate-700 mb-1">Password</label>
+            <label className="block font-medium text-slate-300 mb-1">Password</label>
             <input
               type="password"
               required
-              placeholder="At least 6 characters"
+              placeholder="••••••••"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full bg-white border border-slate-300 rounded-md px-3 py-2 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-600"
+              className="w-full bg-[#14141d] border border-[#242432] rounded-lg px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-violet-500 transition-colors"
             />
           </div>
 
           <div>
-            <label className="block font-medium text-slate-700 mb-1">Role</label>
+            <label className="block font-medium text-slate-300 mb-1">Account Role</label>
             <select
               value={role}
               onChange={(e) => setRole(e.target.value)}
-              className="w-full bg-white border border-slate-300 rounded-md px-3 py-2 text-slate-900 focus:outline-none focus:border-blue-600 font-medium"
+              className="w-full bg-[#14141d] border border-[#242432] rounded-lg px-3 py-2 text-slate-200 focus:outline-none focus:border-violet-500 transition-colors"
             >
-              <option value="EMPLOYEE">Employee (Submit tickets)</option>
-              <option value="AGENT">Support Agent (Triage & resolve)</option>
-              <option value="ADMIN">Administrator (Full system access)</option>
+              <option value="EMPLOYEE">Employee (Submit Tickets)</option>
+              <option value="AGENT">Support Agent (Triage & Resolve)</option>
+              <option value="ADMIN">Administrator (Full Access)</option>
             </select>
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-2 px-4 font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-md shadow-xs transition-colors disabled:opacity-50 mt-1"
+            className="w-full py-2.5 px-4 font-semibold text-white bg-violet-600 hover:bg-violet-500 rounded-lg shadow-md shadow-violet-600/20 transition-all hover:scale-[1.01] disabled:opacity-50 mt-2"
           >
-            {loading ? 'Creating account...' : 'Create account'}
+            {loading ? 'Creating account...' : 'Create Account'}
           </button>
         </form>
 
-        <div className="pt-3 border-t border-slate-100 text-center">
-          <p className="text-[11px] text-slate-500">
+        <div className="pt-3 border-t border-[#1e1e28] text-center">
+          <p className="text-[11px] text-slate-400">
             Already have an account?{' '}
-            <Link to="/login" className="text-blue-600 hover:underline font-medium">
+            <Link to="/login" className="text-violet-400 hover:underline font-semibold">
               Sign in
             </Link>
           </p>

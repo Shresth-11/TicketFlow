@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useAuth } from '../context/AuthContext';
 import { useNavigate, Link } from 'react-router-dom';
-import { AlertCircle } from 'lucide-react';
+import { AlertCircle, LifeBuoy } from 'lucide-react';
 
 export const LoginPage = () => {
   const [email, setEmail] = useState('');
@@ -22,7 +22,7 @@ export const LoginPage = () => {
       navigate('/dashboard');
     } catch (err) {
       if (!err.response) {
-        setError('Backend server is waking up on Render. Please wait 30 seconds and try again!');
+        setError('Backend server is waking up on Render. Please wait 15 seconds and try again!');
       } else if (err.response.status === 401) {
         setError('Invalid email or password. Click one of the quick demo buttons below!');
       } else if (err.response.status >= 500) {
@@ -41,56 +41,56 @@ export const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-100 flex items-center justify-center p-4">
-      <div className="w-full max-w-sm bg-white border border-slate-200 rounded-lg shadow-sm p-6 space-y-5">
+    <div className="min-h-screen bg-[#08080a] flex items-center justify-center p-4">
+      <div className="w-full max-w-sm bg-[#101014] border border-[#20202a] rounded-xl shadow-2xl p-6 space-y-5">
         
         {/* Header */}
-        <div className="text-center space-y-1">
-          <div className="w-9 h-9 rounded-md bg-blue-600 text-white font-bold text-base flex items-center justify-center mx-auto mb-2">
-            TF
+        <div className="text-center space-y-1.5">
+          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-violet-600 to-indigo-500 text-white font-bold text-base flex items-center justify-center mx-auto mb-3 shadow-md shadow-violet-600/20">
+            <LifeBuoy className="w-5 h-5 text-white" />
           </div>
-          <h1 className="text-lg font-bold text-slate-900">Sign in to Service Desk</h1>
-          <p className="text-xs text-slate-500">Enter your credentials to access IT support</p>
+          <h1 className="text-xl font-bold text-white tracking-tight">Sign in to TicketFlow</h1>
+          <p className="text-xs text-slate-400">Access enterprise IT service desk portal</p>
         </div>
 
         {/* Error alert */}
         {error && (
-          <div className="flex items-start gap-2 p-2.5 bg-rose-50 border border-rose-200 text-rose-700 text-xs rounded-md">
+          <div className="flex items-start gap-2 p-2.5 bg-rose-500/10 border border-rose-500/20 text-rose-400 text-xs rounded-lg">
             <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
             <span className="leading-tight">{error}</span>
           </div>
         )}
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="space-y-3 text-xs">
+        <form onSubmit={handleSubmit} className="space-y-3.5 text-xs">
           <div>
-            <label className="block font-medium text-slate-700 mb-1">Email address</label>
+            <label className="block font-medium text-slate-300 mb-1">Email address</label>
             <input
               type="email"
               required
               placeholder="name@company.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full bg-white border border-slate-300 rounded-md px-3 py-2 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
+              className="w-full bg-[#14141d] border border-[#242432] rounded-lg px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-violet-500 transition-colors"
             />
           </div>
 
           <div>
-            <label className="block font-medium text-slate-700 mb-1">Password</label>
+            <label className="block font-medium text-slate-300 mb-1">Password</label>
             <input
               type="password"
               required
               placeholder="••••••••"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full bg-white border border-slate-300 rounded-md px-3 py-2 text-slate-900 placeholder-slate-400 focus:outline-none focus:border-blue-600 focus:ring-1 focus:ring-blue-600"
+              className="w-full bg-[#14141d] border border-[#242432] rounded-lg px-3 py-2 text-white placeholder-slate-500 focus:outline-none focus:border-violet-500 transition-colors"
             />
           </div>
 
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-2 px-4 font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-md shadow-xs transition-colors disabled:opacity-50 mt-1 flex items-center justify-center gap-2"
+            className="w-full py-2.5 px-4 font-semibold text-white bg-violet-600 hover:bg-violet-500 rounded-lg shadow-md shadow-violet-600/20 transition-all hover:scale-[1.01] disabled:opacity-50 mt-1 flex items-center justify-center gap-2"
           >
             {loading ? (
               <>
@@ -103,38 +103,38 @@ export const LoginPage = () => {
           </button>
         </form>
 
-        {/* Subtle Demo Links at bottom */}
-        <div className="pt-3 border-t border-slate-100 text-center space-y-2">
-          <p className="text-[11px] text-slate-400 font-medium">Quick Demo Credentials:</p>
+        {/* Demo Links at bottom */}
+        <div className="pt-3 border-t border-[#1e1e28] text-center space-y-2">
+          <p className="text-[11px] text-slate-500 font-mono uppercase tracking-wider">Quick Demo Login:</p>
           <div className="flex items-center justify-center gap-3 text-xs">
             <button
               type="button"
               onClick={() => handleDemoFill('employee@ticketflow.com')}
-              className="text-blue-600 hover:underline font-medium"
+              className="text-violet-400 hover:text-violet-300 font-semibold transition-colors"
             >
               Employee
             </button>
-            <span className="text-slate-300">•</span>
+            <span className="text-slate-600">•</span>
             <button
               type="button"
               onClick={() => handleDemoFill('agent@ticketflow.com')}
-              className="text-blue-600 hover:underline font-medium"
+              className="text-violet-400 hover:text-violet-300 font-semibold transition-colors"
             >
               Agent
             </button>
-            <span className="text-slate-300">•</span>
+            <span className="text-slate-600">•</span>
             <button
               type="button"
               onClick={() => handleDemoFill('admin@ticketflow.com')}
-              className="text-blue-600 hover:underline font-medium"
+              className="text-violet-400 hover:text-violet-300 font-semibold transition-colors"
             >
               Admin
             </button>
           </div>
 
-          <p className="text-[11px] text-slate-500 pt-1">
+          <p className="text-[11px] text-slate-400 pt-1">
             Need an account?{' '}
-            <Link to="/signup" className="text-blue-600 hover:underline font-medium">
+            <Link to="/signup" className="text-violet-400 hover:underline font-semibold">
               Create account
             </Link>
           </p>
