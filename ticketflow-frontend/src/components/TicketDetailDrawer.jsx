@@ -226,7 +226,7 @@ export const TicketDetailDrawer = ({
                       value={status}
                       onChange={(e) => handleStatusChange(e.target.value)}
                       disabled={updating}
-                      className="w-full bg-white border-2 border-black rounded-full px-3 py-1.5 text-black font-bold focus:outline-none"
+                      className="w-full bg-white border-2 border-black rounded-full px-4 py-1.5 text-black font-bold text-xs focus:outline-none shadow-xs"
                     >
                       <option value="OPEN">Open</option>
                       <option value="IN_PROGRESS">In Progress</option>
@@ -247,7 +247,7 @@ export const TicketDetailDrawer = ({
                       value={assignedToId}
                       onChange={(e) => handleAssignAgent(e.target.value)}
                       disabled={updating}
-                      className="w-full bg-white border-2 border-black rounded-full px-3 py-1.5 text-black font-bold focus:outline-none"
+                      className="w-full bg-white border-2 border-black rounded-full px-4 py-1.5 text-black font-bold text-xs focus:outline-none shadow-xs"
                     >
                       <option value="">Unassigned</option>
                       {agents.map((agent) => (
