@@ -1,0 +1,27 @@
+# Ignore PDF and generator files
+*.pdf
+TicketFlow_Technical_Guide.md
+generate_pdf.py
+
+# Backend build outputs
+ticketflow-backend/target/
+ticketflow-backend/.flattened-pom.xml
+
+# Frontend build & dependencies
+ticketflow-frontend/node_modules/
+ticketflow-frontend/dist/
+ticketflow-frontend/dist-ssr/
+ticketflow-frontend/*.local
+
+# IDE & OS files
+.idea/
+.vscode/
+*.iml
+*.ipr
+*.iws
+.DS_Store
+Thumbs.db
+
+# Logs & temporary files
+*.log
+scratch/
