@@ -72,7 +72,7 @@ export const DashboardPage = () => {
     <div className="min-h-screen bg-[#fbf7ee] text-slate-900 flex flex-col font-sans">
       <Navbar />
 
-      <main className="flex-1 max-w-5xl w-full mx-auto px-4 py-6 space-y-6">
+      <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
         
         {/* Page Title & Main Action Bar */}
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -93,7 +93,7 @@ export const DashboardPage = () => {
           <div className="flex items-center gap-2">
             <button
               onClick={fetchDashboardData}
-              className="p-2 rounded-full bg-white hover:bg-slate-100 border-2 border-black transition-colors"
+              className="p-2 rounded-full bg-white hover:bg-slate-100 border-2 border-black transition-colors shadow-xs"
               title="Refresh Queue"
             >
               <RotateCw className={`w-4 h-4 text-black ${loading ? 'animate-spin' : ''}`} />
@@ -110,7 +110,7 @@ export const DashboardPage = () => {
         </div>
 
         {/* Metric Cards Grid matching heyparker.ai Macintosh shell cards */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
           
           <div className="bg-[#eae3d2] p-4 rounded-2xl border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] flex items-center justify-between">
             <div>

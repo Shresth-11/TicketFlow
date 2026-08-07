@@ -33,16 +33,16 @@ export const Navbar = () => {
   };
 
   return (
-    <header className="sticky top-4 z-40 px-4 mb-4">
+    <header className="sticky top-4 z-40 px-4 sm:px-6 lg:px-8 mb-4">
       {/* Floating Pill Nav Bar matching heyparker.ai */}
-      <div className="max-w-5xl mx-auto bg-white border-2 border-black rounded-full px-5 py-2.5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex items-center justify-between">
+      <div className="max-w-7xl mx-auto bg-white border-2 border-black rounded-full px-6 py-2.5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex items-center justify-between">
         
-        {/* Brand Logo - Red Serif font like Parker */}
+        {/* Brand Logo - Red Serif logo matching Parker */}
         <div className="flex items-center gap-2 cursor-pointer" onClick={() => window.location.href = '/'}>
           <div className="w-7 h-7 rounded-full bg-red-600 flex items-center justify-center text-white font-bold shadow-xs">
             <LifeBuoy className="w-4 h-4 text-white" />
           </div>
-          <span className="text-xl font-serif font-bold text-red-600 tracking-tight">
+          <span className="text-2xl font-serif font-bold text-red-600 tracking-tight">
             TicketFlow
           </span>
         </div>

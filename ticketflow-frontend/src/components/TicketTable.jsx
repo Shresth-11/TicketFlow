@@ -93,13 +93,13 @@ export const TicketTable = ({ tickets, categories, onSelectTicket, loading }) =>
         <table className="w-full text-left border-collapse">
           <thead>
             <tr className="bg-[#dfd7c2] border-b-2 border-black text-[11px] font-mono font-bold uppercase tracking-wider text-black">
-              <th className="py-3 px-4 w-24">Key</th>
+              <th className="py-3 px-4 w-20">Key</th>
               <th className="py-3 px-4">Subject</th>
-              <th className="py-3 px-4 w-40">Category</th>
-              <th className="py-3 px-4 w-32">Priority</th>
-              <th className="py-3 px-4 w-32">Status</th>
-              <th className="py-3 px-4 w-44">Reporter</th>
-              <th className="py-3 px-4 w-44">Assignee</th>
+              <th className="py-3 px-4 w-36">Category</th>
+              <th className="py-3 px-4 w-28">Priority</th>
+              <th className="py-3 px-4 w-28">Status</th>
+              <th className="py-3 px-4 min-w-[140px]">Reporter</th>
+              <th className="py-3 px-4 min-w-[150px]">Assignee</th>
               <th className="py-3 px-4 w-28 text-right">Created</th>
             </tr>
           </thead>
@@ -126,35 +126,35 @@ export const TicketTable = ({ tickets, categories, onSelectTicket, loading }) =>
                   onClick={() => onSelectTicket(ticket)}
                   className="bg-white hover:bg-[#fbf6e9] cursor-pointer transition-colors group"
                 >
-                  <td className="py-3 px-4 font-mono font-bold text-red-600 group-hover:underline">
+                  <td className="py-3 px-4 font-mono font-bold text-red-600 group-hover:underline whitespace-nowrap">
                     TKT-{ticket.id}
                   </td>
-                  <td className="py-3 px-4 font-bold text-black max-w-xs truncate">
+                  <td className="py-3 px-4 font-bold text-black max-w-xs md:max-w-md truncate">
                     {ticket.title}
                   </td>
-                  <td className="py-3 px-4">
+                  <td className="py-3 px-4 whitespace-nowrap">
                     <span className="inline-flex items-center gap-1 text-[11px] font-mono font-semibold text-black bg-[#f1ebd9] border-2 border-black px-2 py-0.5 rounded-md">
                       {ticket.category?.name || 'General'}
                     </span>
                   </td>
-                  <td className="py-3 px-4">
+                  <td className="py-3 px-4 whitespace-nowrap">
                     <PriorityBadge priority={ticket.priority} />
                   </td>
-                  <td className="py-3 px-4">
+                  <td className="py-3 px-4 whitespace-nowrap">
                     <StatusBadge status={ticket.status} />
                   </td>
-                  <td className="py-3 px-4 text-black font-medium">
+                  <td className="py-3 px-4 text-black font-medium whitespace-nowrap">
                     <div className="flex items-center gap-1.5">
-                      <div className="w-5 h-5 rounded-full bg-slate-900 text-white font-bold text-[10px] flex items-center justify-center">
+                      <div className="w-5 h-5 rounded-full bg-slate-900 text-white font-bold text-[10px] flex items-center justify-center shrink-0">
                         {ticket.createdBy?.fullName ? ticket.createdBy.fullName.charAt(0) : 'U'}
                       </div>
                       <span className="truncate">{ticket.createdBy?.fullName}</span>
                     </div>
                   </td>
-                  <td className="py-3 px-4 text-black font-medium">
+                  <td className="py-3 px-4 text-black font-medium whitespace-nowrap">
                     {ticket.assignedTo ? (
                       <div className="flex items-center gap-1.5">
-                        <div className="w-5 h-5 rounded-full bg-red-600 text-white font-bold text-[10px] flex items-center justify-center">
+                        <div className="w-5 h-5 rounded-full bg-red-600 text-white font-bold text-[10px] flex items-center justify-center shrink-0">
                           {ticket.assignedTo.fullName.charAt(0)}
                         </div>
                         <span className="text-black font-semibold truncate">{ticket.assignedTo.fullName}</span>
@@ -163,7 +163,7 @@ export const TicketTable = ({ tickets, categories, onSelectTicket, loading }) =>
                       <span className="text-slate-500 italic">Unassigned</span>
                     )}
                   </td>
-                  <td className="py-3 px-4 text-right text-black font-mono text-[11px] font-medium">
+                  <td className="py-3 px-4 text-right text-black font-mono text-[11px] font-medium whitespace-nowrap">
                     {formatDate(ticket.createdAt)}
                   </td>
                 </tr>
