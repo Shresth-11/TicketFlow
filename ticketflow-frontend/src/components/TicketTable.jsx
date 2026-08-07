@@ -25,14 +25,14 @@ export const TicketTable = ({ tickets, categories, onSelectTicket, loading }) =>
   const formatDate = (dateString) => {
     if (!dateString) return 'N/A';
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
   };
 
   return (
     <div className="bg-[#eae3d2] border-2 border-black rounded-2xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] overflow-hidden">
       
       {/* Search & Filter Control Bar */}
-      <div className="p-4 border-b-2 border-black bg-[#e2dac7] flex flex-col md:flex-row gap-3 items-center justify-between">
+      <div className="p-3.5 border-b-2 border-black bg-[#e2dac7] flex flex-col md:flex-row gap-3 items-center justify-between">
         
         {/* Search Input */}
         <div className="relative w-full md:w-80">
@@ -88,25 +88,24 @@ export const TicketTable = ({ tickets, categories, onSelectTicket, loading }) =>
 
       </div>
 
-      {/* Main Data Table */}
-      <div className="overflow-x-auto">
-        <table className="w-full text-left border-collapse">
+      {/* Main Data Table without horizontal scrollbar */}
+      <div className="w-full overflow-hidden">
+        <table className="w-full text-left border-collapse table-fixed">
           <thead>
             <tr className="bg-[#dfd7c2] border-b-2 border-black text-[11px] font-mono font-bold uppercase tracking-wider text-black">
-              <th className="py-3 px-4 w-20">Key</th>
-              <th className="py-3 px-4">Subject</th>
-              <th className="py-3 px-4 w-36">Category</th>
-              <th className="py-3 px-4 w-28">Priority</th>
-              <th className="py-3 px-4 w-28">Status</th>
-              <th className="py-3 px-4 min-w-[140px]">Reporter</th>
-              <th className="py-3 px-4 min-w-[150px]">Assignee</th>
-              <th className="py-3 px-4 w-28 text-right">Created</th>
+              <th className="py-3 px-3 w-[8%]">Key</th>
+              <th className="py-3 px-3 w-[26%]">Subject</th>
+              <th className="py-3 px-3 w-[16%]">Category</th>
+              <th className="py-3 px-3 w-[11%]">Priority</th>
+              <th className="py-3 px-3 w-[12%]">Status</th>
+              <th className="py-3 px-3 w-[13%]">Reporter</th>
+              <th className="py-3 px-3 w-[14%]">Assignee</th>
             </tr>
           </thead>
           <tbody className="divide-y-2 divide-black text-xs">
             {loading ? (
               <tr>
-                <td colSpan="8" className="py-12 text-center text-black bg-white">
+                <td colSpan="7" className="py-12 text-center text-black bg-white">
                   <div className="flex flex-col items-center justify-center gap-2">
                     <div className="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin" />
                     <span className="font-mono font-bold">Loading queue...</span>
@@ -115,7 +114,7 @@ export const TicketTable = ({ tickets, categories, onSelectTicket, loading }) =>
               </tr>
             ) : filteredTickets.length === 0 ? (
               <tr>
-                <td colSpan="8" className="py-12 text-center text-slate-700 font-medium bg-white">
+                <td colSpan="7" className="py-12 text-center text-slate-700 font-medium bg-white">
                   No support tickets found matching current filters.
                 </td>
               </tr>
@@ -126,34 +125,34 @@ export const TicketTable = ({ tickets, categories, onSelectTicket, loading }) =>
                   onClick={() => onSelectTicket(ticket)}
                   className="bg-white hover:bg-[#fbf6e9] cursor-pointer transition-colors group"
                 >
-                  <td className="py-3 px-4 font-mono font-bold text-red-600 group-hover:underline whitespace-nowrap">
+                  <td className="py-3 px-3 font-mono font-bold text-red-600 group-hover:underline truncate">
                     TKT-{ticket.id}
                   </td>
-                  <td className="py-3 px-4 font-bold text-black max-w-xs md:max-w-md truncate">
+                  <td className="py-3 px-3 font-bold text-black truncate" title={ticket.title}>
                     {ticket.title}
                   </td>
-                  <td className="py-3 px-4 whitespace-nowrap">
-                    <span className="inline-flex items-center gap-1 text-[11px] font-mono font-semibold text-black bg-[#f1ebd9] border-2 border-black px-2 py-0.5 rounded-md">
+                  <td className="py-3 px-3 truncate">
+                    <span className="inline-flex items-center gap-1 text-[11px] font-mono font-semibold text-black bg-[#f1ebd9] border-2 border-black px-2 py-0.5 rounded-md truncate max-w-full">
                       {ticket.category?.name || 'General'}
                     </span>
                   </td>
-                  <td className="py-3 px-4 whitespace-nowrap">
+                  <td className="py-3 px-3 truncate">
                     <PriorityBadge priority={ticket.priority} />
                   </td>
-                  <td className="py-3 px-4 whitespace-nowrap">
+                  <td className="py-3 px-3 truncate">
                     <StatusBadge status={ticket.status} />
                   </td>
-                  <td className="py-3 px-4 text-black font-medium whitespace-nowrap">
-                    <div className="flex items-center gap-1.5">
+                  <td className="py-3 px-3 text-black font-medium truncate" title={ticket.createdBy?.fullName}>
+                    <div className="flex items-center gap-1.5 truncate">
                       <div className="w-5 h-5 rounded-full bg-slate-900 text-white font-bold text-[10px] flex items-center justify-center shrink-0">
                         {ticket.createdBy?.fullName ? ticket.createdBy.fullName.charAt(0) : 'U'}
                       </div>
                       <span className="truncate">{ticket.createdBy?.fullName}</span>
                     </div>
                   </td>
-                  <td className="py-3 px-4 text-black font-medium whitespace-nowrap">
+                  <td className="py-3 px-3 text-black font-medium truncate" title={ticket.assignedTo?.fullName || 'Unassigned'}>
                     {ticket.assignedTo ? (
-                      <div className="flex items-center gap-1.5">
+                      <div className="flex items-center gap-1.5 truncate">
                         <div className="w-5 h-5 rounded-full bg-red-600 text-white font-bold text-[10px] flex items-center justify-center shrink-0">
                           {ticket.assignedTo.fullName.charAt(0)}
                         </div>
@@ -162,9 +161,6 @@ export const TicketTable = ({ tickets, categories, onSelectTicket, loading }) =>
                     ) : (
                       <span className="text-slate-500 italic">Unassigned</span>
                     )}
-                  </td>
-                  <td className="py-3 px-4 text-right text-black font-mono text-[11px] font-medium whitespace-nowrap">
-                    {formatDate(ticket.createdAt)}
                   </td>
                 </tr>
               ))
