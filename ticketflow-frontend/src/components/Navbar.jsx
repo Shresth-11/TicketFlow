@@ -9,23 +9,23 @@ export const Navbar = () => {
     switch (role) {
       case 'ADMIN':
         return (
-          <span className="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-300 border border-purple-500/25">
-            <ShieldCheck className="w-3 h-3 text-purple-400" />
+          <span className="inline-flex items-center gap-1 text-[11px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-purple-100 text-purple-900 border-2 border-purple-800">
+            <ShieldCheck className="w-3 h-3 text-purple-800" />
             Admin
           </span>
         );
       case 'AGENT':
         return (
-          <span className="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded-full bg-violet-500/10 text-violet-300 border border-violet-500/25">
-            <Headphones className="w-3 h-3 text-violet-400" />
+          <span className="inline-flex items-center gap-1 text-[11px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-red-100 text-red-900 border-2 border-red-800">
+            <Headphones className="w-3 h-3 text-red-800" />
             Agent
           </span>
         );
       case 'EMPLOYEE':
       default:
         return (
-          <span className="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-0.5 rounded-full bg-slate-800 text-slate-300 border border-slate-700/80">
-            <UserCheck className="w-3 h-3 text-slate-400" />
+          <span className="inline-flex items-center gap-1 text-[11px] font-mono font-bold px-2.5 py-0.5 rounded-full bg-amber-100 text-amber-900 border-2 border-amber-800">
+            <UserCheck className="w-3 h-3 text-amber-800" />
             Employee
           </span>
         );
@@ -33,52 +33,47 @@ export const Navbar = () => {
   };
 
   return (
-    <header className="bg-[#0a0a0d]/80 backdrop-blur-md border-b border-[#1f1f28] sticky top-0 z-30 shadow-sm">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-14">
-          
-          {/* Brand logo */}
-          <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-violet-600 to-indigo-500 flex items-center justify-center text-white font-bold shadow-md shadow-violet-600/20">
-              <LifeBuoy className="w-4 h-4 text-white" />
-            </div>
-            <div className="flex items-center gap-2">
-              <span className="text-base font-bold text-white tracking-tight">
-                TicketFlow
-              </span>
-              <span className="text-xs text-slate-500 font-medium hidden sm:inline">
-                / Service Desk
-              </span>
-            </div>
+    <header className="sticky top-4 z-40 px-4 mb-4">
+      {/* Floating Pill Nav Bar matching heyparker.ai */}
+      <div className="max-w-5xl mx-auto bg-white border-2 border-black rounded-full px-5 py-2.5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex items-center justify-between">
+        
+        {/* Brand Logo - Red Serif font like Parker */}
+        <div className="flex items-center gap-2 cursor-pointer" onClick={() => window.location.href = '/'}>
+          <div className="w-7 h-7 rounded-full bg-red-600 flex items-center justify-center text-white font-bold shadow-xs">
+            <LifeBuoy className="w-4 h-4 text-white" />
           </div>
-
-          {/* User profile */}
-          {user && (
-            <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2.5">
-                <div className="w-7 h-7 rounded-full bg-violet-950/60 border border-violet-500/30 text-violet-300 font-semibold text-xs flex items-center justify-center">
-                  {user.fullName ? user.fullName.charAt(0).toUpperCase() : 'U'}
-                </div>
-                <div className="hidden sm:flex items-center gap-2">
-                  <span className="text-xs font-semibold text-slate-200">{user.fullName}</span>
-                  {getRoleBadge(user.role)}
-                </div>
-              </div>
-
-              <div className="h-4 w-[1px] bg-slate-800 hidden sm:block" />
-
-              <button
-                onClick={logout}
-                className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-400 hover:text-white transition-colors"
-                title="Sign Out"
-              >
-                <LogOut className="w-3.5 h-3.5 text-slate-400" />
-                <span className="hidden sm:inline">Sign Out</span>
-              </button>
-            </div>
-          )}
-
+          <span className="text-xl font-serif font-bold text-red-600 tracking-tight">
+            TicketFlow
+          </span>
         </div>
+
+        {/* User profile & Sign Out Button */}
+        {user ? (
+          <div className="flex items-center gap-3">
+            <div className="hidden sm:flex items-center gap-2">
+              <span className="text-xs font-bold text-black">{user.fullName}</span>
+              {getRoleBadge(user.role)}
+            </div>
+
+            <button
+              onClick={logout}
+              className="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full bg-black hover:bg-slate-800 text-white text-xs font-bold transition-all shadow-xs"
+            >
+              <LogOut className="w-3.5 h-3.5" />
+              Sign Out
+            </button>
+          </div>
+        ) : (
+          <div className="flex items-center gap-2">
+            <a
+              href="/login"
+              className="px-4 py-1.5 rounded-full bg-black text-white text-xs font-bold hover:bg-slate-800 transition-colors"
+            >
+              Sign In Today
+            </a>
+          </div>
+        )}
+
       </div>
     </header>
   );

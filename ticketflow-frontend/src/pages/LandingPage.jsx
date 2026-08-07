@@ -10,7 +10,8 @@ import {
   ChevronRight,
   ShieldCheck,
   Inbox,
-  Sparkles
+  Coffee,
+  Smile
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
@@ -28,167 +29,154 @@ export const LandingPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[#08080a] text-slate-100 font-sans flex flex-col selection:bg-violet-500 selection:text-white">
+    <div className="min-h-screen bg-[#fbf7ee] text-slate-900 font-sans flex flex-col selection:bg-red-500 selection:text-white">
       
-      {/* Navigation Bar */}
-      <header className="bg-[#0a0a0d]/80 backdrop-blur-md border-b border-[#1f1f28] sticky top-0 z-40 shadow-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-14">
-            
-            {/* Brand Logo */}
-            <div className="flex items-center gap-2.5 cursor-pointer" onClick={() => navigate('/')}>
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-violet-600 to-indigo-500 flex items-center justify-center text-white font-bold shadow-md shadow-violet-600/20">
-                <LifeBuoy className="w-4 h-4 text-white" />
-              </div>
-              <div className="flex items-baseline gap-2">
-                <span className="text-base font-bold text-white tracking-tight">TicketFlow</span>
-                <span className="text-xs text-slate-500 font-medium hidden sm:inline">/ Service Desk</span>
-              </div>
+      {/* Floating Pill Nav Bar matching heyparker.ai */}
+      <header className="sticky top-4 z-40 px-4 mb-4">
+        <div className="max-w-5xl mx-auto bg-white border-2 border-black rounded-full px-6 py-2.5 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] flex items-center justify-between">
+          
+          {/* Brand Logo - Red Serif logo matching Parker */}
+          <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate('/')}>
+            <div className="w-7 h-7 rounded-full bg-red-600 flex items-center justify-center text-white font-bold shadow-xs">
+              <LifeBuoy className="w-4 h-4 text-white" />
             </div>
-
-            {/* Nav CTAs */}
-            <div className="flex items-center gap-3">
-              <a href="#demo" className="text-xs font-semibold text-slate-400 hover:text-white transition-colors hidden sm:inline-block">
-                Demo Accounts
-              </a>
-
-              {user ? (
-                <Link
-                  to="/dashboard"
-                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-violet-600 hover:bg-violet-500 text-white text-xs font-semibold shadow-md shadow-violet-600/20 transition-all hover:scale-[1.02]"
-                >
-                  Open Dashboard
-                  <ArrowRight className="w-3.5 h-3.5" />
-                </Link>
-              ) : (
-                <div className="flex items-center gap-2">
-                  <Link
-                    to="/login"
-                    className="px-3 py-1.5 text-xs font-semibold text-slate-300 hover:text-white transition-colors"
-                  >
-                    Sign In
-                  </Link>
-                  <Link
-                    to="/signup"
-                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg bg-violet-600 hover:bg-violet-500 text-white text-xs font-semibold shadow-md shadow-violet-600/20 transition-all hover:scale-[1.02]"
-                  >
-                    Create Account
-                  </Link>
-                </div>
-              )}
-            </div>
-
+            <span className="text-2xl font-serif font-bold text-red-600 tracking-tight">
+              TicketFlow
+            </span>
           </div>
+
+          {/* Center Navigation Links */}
+          <div className="hidden md:flex items-center gap-6 text-xs font-bold text-black">
+            <a href="#features" className="hover:text-red-600 transition-colors">How it works</a>
+            <a href="#demo" className="hover:text-red-600 transition-colors">Demo Portals</a>
+            <a href="#security" className="hover:text-red-600 transition-colors">Security</a>
+          </div>
+
+          {/* Right Action Button */}
+          <div>
+            {user ? (
+              <Link
+                to="/dashboard"
+                className="px-5 py-2 rounded-full bg-black text-white text-xs font-bold hover:bg-slate-800 transition-all shadow-xs inline-flex items-center gap-1.5"
+              >
+                Dashboard <ArrowRight className="w-3.5 h-3.5" />
+              </Link>
+            ) : (
+              <Link
+                to="/login"
+                className="px-5 py-2 rounded-full bg-black text-white text-xs font-bold hover:bg-slate-800 transition-all shadow-xs"
+              >
+                Sign In Today
+              </Link>
+            )}
+          </div>
+
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="pt-16 pb-16 bg-gradient-to-b from-[#0c0c10] via-[#08080a] to-[#0a0a0d] border-b border-[#1f1f28] relative overflow-hidden">
+      {/* Hero Section matching heyparker.ai Vintage Mac Monitor & Retro Graphics */}
+      <section className="pt-10 pb-16 px-4 relative overflow-hidden">
         
-        {/* Subtle Ambient Radial Glow */}
-        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[300px] bg-violet-600/10 blur-[120px] rounded-full pointer-events-none" />
+        {/* Left Hand-Drawn Coffee Cup Graphic (heyparker.ai style) */}
+        <div className="hidden lg:flex flex-col items-center absolute left-8 top-36 pointer-events-none opacity-90 animate-bounce" style={{ animationDuration: '3s' }}>
+          <div className="w-24 h-32 bg-amber-400 border-3 border-black rounded-b-3xl rounded-t-xl flex flex-col items-center justify-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] relative">
+            <div className="w-20 h-4 bg-black rounded-t-md absolute -top-4" />
+            <Coffee className="w-10 h-10 text-black stroke-[2.5]" />
+            <span className="font-mono text-[9px] font-bold text-black mt-1">IT CAFFEINE</span>
+          </div>
+        </div>
 
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6 relative z-10">
+        {/* Right Hand-Drawn Mascot Graphic (heyparker.ai style) */}
+        <div className="hidden lg:flex flex-col items-center absolute right-8 top-36 pointer-events-none opacity-90">
+          <div className="w-24 h-32 bg-emerald-400 border-3 border-black rounded-full flex flex-col items-center justify-center shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] relative">
+            <Smile className="w-12 h-12 text-black stroke-[2.5]" />
+            <span className="font-mono text-[9px] font-bold text-black mt-1">SLA 100%</span>
+          </div>
+        </div>
+
+        <div className="max-w-4xl mx-auto text-center space-y-8 relative z-10">
           
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-violet-500/10 border border-violet-500/25 text-violet-400 text-xs font-mono uppercase tracking-widest">
-            <Sparkles className="w-3 h-3 text-violet-400" />
-            <span>Next-Gen Enterprise Service Desk</span>
+          {/* Main Retro Macintosh Computer Frame (heyparker.ai Hero Monitor) */}
+          <div className="bg-[#eae3d2] border-3 border-black rounded-3xl p-6 sm:p-10 shadow-[10px_10px_0px_0px_rgba(0,0,0,1)] space-y-6 relative max-w-2xl mx-auto">
+            
+            {/* White Monitor Screen Box */}
+            <div className="bg-white border-3 border-black rounded-2xl p-8 sm:p-12 shadow-inner text-center space-y-4">
+              <h1 className="text-3xl sm:text-5xl font-serif font-bold text-black leading-tight tracking-tight">
+                The way you manage IT support is about to change forever
+              </h1>
+              <p className="text-xs sm:text-sm font-medium text-slate-700 max-w-lg mx-auto">
+                TicketFlow streamlines corporate helpdesks with automated ticket triage, SLA priority routing, and slide-over inspector workflows.
+              </p>
+            </div>
+
+            {/* Macintosh Floppy Disk Drive Slot & Label */}
+            <div className="flex flex-col items-center justify-center gap-1.5 pt-2">
+              <span className="font-mono text-[10px] font-bold text-slate-800 uppercase tracking-widest">Scroll down ↓</span>
+              <div className="w-48 h-3.5 bg-[#dcd4c0] border-2 border-black rounded-sm shadow-inner relative flex items-center justify-center">
+                <div className="w-12 h-1 bg-black rounded-full" />
+              </div>
+            </div>
+
           </div>
 
-          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight leading-tight">
-            IT Support & Incident Response, <br />
-            <span className="bg-gradient-to-r from-violet-300 via-purple-400 to-indigo-400 bg-clip-text text-transparent">
-              Built for Modern Teams.
-            </span>
-          </h1>
-
-          <p className="text-sm sm:text-base text-slate-400 max-w-2xl mx-auto leading-relaxed">
-            TicketFlow is a high-performance Service Desk platform for managing internal helpdesk queues, tracking SLA resolution times, and assigning support tickets.
-          </p>
-
+          {/* Action CTAs */}
           <div className="flex flex-wrap items-center justify-center gap-3 pt-2">
             <Link
               to="/login"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-violet-600 hover:bg-violet-500 text-white text-xs font-semibold shadow-lg shadow-violet-600/25 transition-all hover:scale-[1.02]"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-red-600 hover:bg-red-700 text-white text-xs font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] border-2 border-black transition-all hover:translate-x-[-2px] hover:translate-y-[-2px]"
             >
-              Sign In to Portal
+              Sign In to Service Desk
               <ArrowRight className="w-4 h-4" />
             </Link>
 
             <a
               href="#demo"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-[#121218] hover:bg-[#181822] text-slate-200 border border-[#20202c] text-xs font-semibold shadow-sm transition-all"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white hover:bg-slate-100 text-black border-2 border-black text-xs font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all hover:translate-x-[-2px] hover:translate-y-[-2px]"
             >
               Explore Demo Accounts
             </a>
-          </div>
-
-          {/* Parker Dark Theme Queue Mockup Card */}
-          <div className="mt-12 bg-[#101014] border border-[#20202a] rounded-xl p-4 shadow-2xl text-left max-w-4xl mx-auto space-y-3">
-            <div className="flex items-center justify-between border-b border-[#1c1c26] pb-3">
-              <div className="flex items-center gap-2">
-                <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80" />
-                <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80" />
-                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80" />
-                <span className="text-xs text-slate-400 font-mono ml-2">TicketFlow / Active Staff Queue</span>
-              </div>
-              <span className="text-[11px] font-mono font-semibold px-2 py-0.5 rounded bg-violet-500/10 text-violet-400 border border-violet-500/20">
-                12 Active Tickets
-              </span>
-            </div>
-
-            {/* Sample Ticket Row */}
-            <div className="bg-[#14141d] border border-[#242432] rounded-lg p-3 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs">
-              <div className="flex items-center gap-3">
-                <span className="font-mono text-violet-400 font-bold">TKT-102</span>
-                <span className="font-semibold text-slate-200">Laptop screen flickers violently and turns pitch black</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-rose-500/10 text-rose-400 border border-rose-500/25">
-                  CRITICAL
-                </span>
-                <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-amber-500/10 text-amber-400 border border-amber-500/25">
-                  In Progress
-                </span>
-              </div>
-            </div>
           </div>
 
         </div>
       </section>
 
       {/* Feature Pillars */}
-      <section className="py-14 bg-[#08080a] border-b border-[#1f1f28]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="features" className="py-14 bg-[#eae3d2] border-y-2 border-black">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           
+          <div className="text-center mb-10 space-y-2">
+            <h2 className="text-3xl font-serif font-bold text-black">Built for Speed & Reliability</h2>
+            <p className="text-xs font-medium text-slate-700">Everything your IT support team needs in one place</p>
+          </div>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             
-            <div className="p-6 rounded-xl border border-[#20202a] bg-[#101014] space-y-2.5 hover:border-violet-500/40 transition-colors group">
-              <div className="w-10 h-10 rounded-lg bg-violet-500/10 border border-violet-500/20 flex items-center justify-center text-violet-400 mb-3 group-hover:scale-105 transition-transform">
-                <Inbox className="w-5 h-5" />
+            <div className="p-6 rounded-2xl border-2 border-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] space-y-2.5">
+              <div className="w-10 h-10 rounded-full bg-red-100 border-2 border-black flex items-center justify-center text-red-600 mb-3">
+                <Inbox className="w-5 h-5 text-red-700" />
               </div>
-              <h3 className="text-sm font-bold text-white">Centralized Queue</h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
+              <h3 className="text-base font-serif font-bold text-black">Centralized Queue</h3>
+              <p className="text-xs text-slate-700 leading-relaxed font-medium">
                 Filter and manage incoming IT support requests across categories, priority urgency, and agent assignment.
               </p>
             </div>
 
-            <div className="p-6 rounded-xl border border-[#20202a] bg-[#101014] space-y-2.5 hover:border-violet-500/40 transition-colors group">
-              <div className="w-10 h-10 rounded-lg bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 mb-3 group-hover:scale-105 transition-transform">
-                <Lock className="w-5 h-5" />
+            <div className="p-6 rounded-2xl border-2 border-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] space-y-2.5">
+              <div className="w-10 h-10 rounded-full bg-amber-100 border-2 border-black flex items-center justify-center text-amber-800 mb-3">
+                <Lock className="w-5 h-5 text-amber-800" />
               </div>
-              <h3 className="text-sm font-bold text-white">Data Privacy & Security</h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
+              <h3 className="text-base font-serif font-bold text-black">Data Privacy & Security</h3>
+              <p className="text-xs text-slate-700 leading-relaxed font-medium">
                 Built with Spring Security 6 and JPA query-level scoping to ensure employee accounts only view their own tickets.
               </p>
             </div>
 
-            <div className="p-6 rounded-xl border border-[#20202a] bg-[#101014] space-y-2.5 hover:border-violet-500/40 transition-colors group">
-              <div className="w-10 h-10 rounded-lg bg-purple-500/10 border border-purple-500/20 flex items-center justify-center text-purple-400 mb-3 group-hover:scale-105 transition-transform">
-                <Zap className="w-5 h-5" />
+            <div className="p-6 rounded-2xl border-2 border-black bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] space-y-2.5">
+              <div className="w-10 h-10 rounded-full bg-purple-100 border-2 border-black flex items-center justify-center text-purple-800 mb-3">
+                <Zap className="w-5 h-5 text-purple-800" />
               </div>
-              <h3 className="text-sm font-bold text-white">Slide-over Inspector</h3>
-              <p className="text-xs text-slate-400 leading-relaxed">
+              <h3 className="text-base font-serif font-bold text-black">Slide-over Inspector</h3>
+              <p className="text-xs text-slate-700 leading-relaxed font-medium">
                 Linear-style right drawer for quick ticket inspection, status updates, agent assignment, and response drafting.
               </p>
             </div>
@@ -199,76 +187,76 @@ export const LandingPage = () => {
       </section>
 
       {/* Recruiter Quick Demo Hub */}
-      <section id="demo" className="py-14 bg-[#0a0a0d]">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+      <section id="demo" className="py-16 bg-[#fbf7ee]">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
           
           <div>
-            <h2 className="text-2xl font-bold text-white tracking-tight">
+            <h2 className="text-3xl font-serif font-bold text-black tracking-tight">
               Test Portal Accounts
             </h2>
-            <p className="text-xs text-slate-400 mt-1">
+            <p className="text-xs font-medium text-slate-700 mt-1">
               Select a demo role below to launch directly into the dashboard queue:
             </p>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-left">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 text-left">
             
             <button
               onClick={() => handleQuickDemoLogin('employee@ticketflow.com')}
-              className="bg-[#101014] hover:bg-[#14141c] border border-[#20202a] hover:border-violet-500/50 p-5 rounded-xl transition-all group flex flex-col justify-between space-y-3 shadow-xl"
+              className="bg-white border-2 border-black p-5 rounded-2xl transition-all group flex flex-col justify-between space-y-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[-2px] hover:translate-y-[-2px]"
             >
               <div>
                 <div className="flex items-center gap-2 mb-2">
-                  <User className="w-4 h-4 text-slate-400 group-hover:text-violet-400 transition-colors" />
-                  <span className="text-xs font-bold text-white group-hover:text-violet-300">
+                  <User className="w-4 h-4 text-black" />
+                  <span className="text-sm font-bold text-black font-serif">
                     Employee Account
                   </span>
                 </div>
-                <p className="text-[11px] text-slate-400 leading-normal">
+                <p className="text-xs text-slate-700 leading-normal font-medium">
                   Submit new requests and track personal tickets with strict privacy controls.
                 </p>
               </div>
-              <span className="text-xs font-semibold text-violet-400 inline-flex items-center gap-1">
+              <span className="text-xs font-bold text-red-600 inline-flex items-center gap-1">
                 Sign in as Employee <ChevronRight className="w-3.5 h-3.5" />
               </span>
             </button>
 
             <button
               onClick={() => handleQuickDemoLogin('agent@ticketflow.com')}
-              className="bg-[#101014] hover:bg-[#14141c] border border-[#20202a] hover:border-violet-500/50 p-5 rounded-xl transition-all group flex flex-col justify-between space-y-3 shadow-xl"
+              className="bg-white border-2 border-black p-5 rounded-2xl transition-all group flex flex-col justify-between space-y-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[-2px] hover:translate-y-[-2px]"
             >
               <div>
                 <div className="flex items-center gap-2 mb-2">
-                  <Headset className="w-4 h-4 text-violet-400" />
-                  <span className="text-xs font-bold text-white group-hover:text-violet-300">
+                  <Headset className="w-4 h-4 text-red-600" />
+                  <span className="text-sm font-bold text-black font-serif">
                     Support Agent
                   </span>
                 </div>
-                <p className="text-[11px] text-slate-400 leading-normal">
+                <p className="text-xs text-slate-700 leading-normal font-medium">
                   Manage organization queue, review auto-suggestions, assign agents, and resolve incidents.
                 </p>
               </div>
-              <span className="text-xs font-semibold text-violet-400 inline-flex items-center gap-1">
+              <span className="text-xs font-bold text-red-600 inline-flex items-center gap-1">
                 Sign in as Agent <ChevronRight className="w-3.5 h-3.5" />
               </span>
             </button>
 
             <button
               onClick={() => handleQuickDemoLogin('admin@ticketflow.com')}
-              className="bg-[#101014] hover:bg-[#14141c] border border-[#20202a] hover:border-violet-500/50 p-5 rounded-xl transition-all group flex flex-col justify-between space-y-3 shadow-xl"
+              className="bg-white border-2 border-black p-5 rounded-2xl transition-all group flex flex-col justify-between space-y-4 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:translate-x-[-2px] hover:translate-y-[-2px]"
             >
               <div>
                 <div className="flex items-center gap-2 mb-2">
-                  <ShieldCheck className="w-4 h-4 text-purple-400" />
-                  <span className="text-xs font-bold text-white group-hover:text-violet-300">
+                  <ShieldCheck className="w-4 h-4 text-purple-700" />
+                  <span className="text-sm font-bold text-black font-serif">
                     System Admin
                   </span>
                 </div>
-                <p className="text-[11px] text-slate-400 leading-normal">
+                <p className="text-xs text-slate-700 leading-normal font-medium">
                   Full administrative access, ticket deletion, category management, and user controls.
                 </p>
               </div>
-              <span className="text-xs font-semibold text-violet-400 inline-flex items-center gap-1">
+              <span className="text-xs font-bold text-red-600 inline-flex items-center gap-1">
                 Sign in as Admin <ChevronRight className="w-3.5 h-3.5" />
               </span>
             </button>
@@ -279,13 +267,13 @@ export const LandingPage = () => {
       </section>
 
       {/* Footer */}
-      <footer className="mt-auto border-t border-[#1f1f28] bg-[#08080a] py-6 text-xs text-slate-500">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <footer className="mt-auto border-t-2 border-black bg-white py-6 text-xs text-black">
+        <div className="max-w-5xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-3 font-medium">
           <div className="flex items-center gap-2">
-            <span className="font-semibold text-slate-300">TicketFlow Service Desk</span>
+            <span className="font-serif font-bold text-red-600 text-sm">TicketFlow</span>
             <span>— Java 17 Spring Boot + React 18</span>
           </div>
-          <div className="text-slate-500 text-[11px] font-mono">
+          <div className="font-mono text-[11px] text-slate-700">
             Enterprise IT Support Desk System
           </div>
         </div>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { PriorityBadge, StatusBadge } from './Badge';
-import { Search, Filter, Calendar, Hash, FileText, Tag, User, UserCheck } from 'lucide-react';
+import { Search } from 'lucide-react';
 
 export const TicketTable = ({ tickets, categories, onSelectTicket, loading }) => {
   const [searchTerm, setSearchTerm] = useState('');
@@ -29,20 +29,20 @@ export const TicketTable = ({ tickets, categories, onSelectTicket, loading }) =>
   };
 
   return (
-    <div className="bg-[#101014] border border-[#20202a] rounded-xl shadow-xl overflow-hidden">
+    <div className="bg-[#eae3d2] border-2 border-black rounded-2xl shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] overflow-hidden">
       
       {/* Search & Filter Control Bar */}
-      <div className="p-4 border-b border-[#20202a] bg-[#14141a] flex flex-col md:flex-row gap-3 items-center justify-between">
+      <div className="p-4 border-b-2 border-black bg-[#e2dac7] flex flex-col md:flex-row gap-3 items-center justify-between">
         
         {/* Search Input */}
         <div className="relative w-full md:w-80">
-          <Search className="w-4 h-4 text-slate-500 absolute left-3 top-1/2 -translate-y-1/2" />
+          <Search className="w-4 h-4 text-black absolute left-3 top-1/2 -translate-y-1/2" />
           <input
             type="text"
             placeholder="Search tickets by title, ID, reporter..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full pl-9 pr-3 py-1.5 bg-[#181820] border border-[#282834] rounded-lg text-xs text-white placeholder-slate-500 focus:outline-none focus:border-violet-500 transition-colors"
+            className="w-full pl-9 pr-3 py-1.5 bg-white border-2 border-black rounded-full text-xs text-black placeholder-slate-500 font-medium focus:outline-none focus:ring-2 focus:ring-red-500"
           />
         </div>
 
@@ -51,7 +51,7 @@ export const TicketTable = ({ tickets, categories, onSelectTicket, loading }) =>
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="px-2.5 py-1.5 bg-[#181820] border border-[#282834] rounded-lg text-xs text-slate-300 focus:outline-none focus:border-violet-500"
+            className="px-3 py-1.5 bg-white border-2 border-black rounded-full text-xs font-bold text-black focus:outline-none"
           >
             <option value="">All Statuses</option>
             <option value="OPEN">Open</option>
@@ -63,7 +63,7 @@ export const TicketTable = ({ tickets, categories, onSelectTicket, loading }) =>
           <select
             value={priorityFilter}
             onChange={(e) => setPriorityFilter(e.target.value)}
-            className="px-2.5 py-1.5 bg-[#181820] border border-[#282834] rounded-lg text-xs text-slate-300 focus:outline-none focus:border-violet-500"
+            className="px-3 py-1.5 bg-white border-2 border-black rounded-full text-xs font-bold text-black focus:outline-none"
           >
             <option value="">All Priorities</option>
             <option value="CRITICAL">Critical</option>
@@ -75,7 +75,7 @@ export const TicketTable = ({ tickets, categories, onSelectTicket, loading }) =>
           <select
             value={categoryFilter}
             onChange={(e) => setCategoryFilter(e.target.value)}
-            className="px-2.5 py-1.5 bg-[#181820] border border-[#282834] rounded-lg text-xs text-slate-300 focus:outline-none focus:border-violet-500"
+            className="px-3 py-1.5 bg-white border-2 border-black rounded-full text-xs font-bold text-black focus:outline-none"
           >
             <option value="">All Categories</option>
             {categories.map((cat) => (
@@ -92,30 +92,30 @@ export const TicketTable = ({ tickets, categories, onSelectTicket, loading }) =>
       <div className="overflow-x-auto">
         <table className="w-full text-left border-collapse">
           <thead>
-            <tr className="bg-[#14141a] border-b border-[#20202a] text-[11px] font-mono uppercase tracking-wider text-slate-400">
-              <th className="py-3 px-4 font-semibold w-24">Key</th>
-              <th className="py-3 px-4 font-semibold">Subject</th>
-              <th className="py-3 px-4 font-semibold w-40">Category</th>
-              <th className="py-3 px-4 font-semibold w-32">Priority</th>
-              <th className="py-3 px-4 font-semibold w-32">Status</th>
-              <th className="py-3 px-4 font-semibold w-44">Reporter</th>
-              <th className="py-3 px-4 font-semibold w-44">Assignee</th>
-              <th className="py-3 px-4 font-semibold w-28 text-right">Created</th>
+            <tr className="bg-[#dfd7c2] border-b-2 border-black text-[11px] font-mono font-bold uppercase tracking-wider text-black">
+              <th className="py-3 px-4 w-24">Key</th>
+              <th className="py-3 px-4">Subject</th>
+              <th className="py-3 px-4 w-40">Category</th>
+              <th className="py-3 px-4 w-32">Priority</th>
+              <th className="py-3 px-4 w-32">Status</th>
+              <th className="py-3 px-4 w-44">Reporter</th>
+              <th className="py-3 px-4 w-44">Assignee</th>
+              <th className="py-3 px-4 w-28 text-right">Created</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-[#1a1a24] text-xs">
+          <tbody className="divide-y-2 divide-black text-xs">
             {loading ? (
               <tr>
-                <td colSpan="8" className="py-12 text-center text-slate-500">
+                <td colSpan="8" className="py-12 text-center text-black bg-white">
                   <div className="flex flex-col items-center justify-center gap-2">
-                    <div className="w-5 h-5 border-2 border-violet-500 border-t-transparent rounded-full animate-spin" />
-                    <span>Loading queue...</span>
+                    <div className="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin" />
+                    <span className="font-mono font-bold">Loading queue...</span>
                   </div>
                 </td>
               </tr>
             ) : filteredTickets.length === 0 ? (
               <tr>
-                <td colSpan="8" className="py-12 text-center text-slate-500">
+                <td colSpan="8" className="py-12 text-center text-slate-700 font-medium bg-white">
                   No support tickets found matching current filters.
                 </td>
               </tr>
@@ -124,16 +124,16 @@ export const TicketTable = ({ tickets, categories, onSelectTicket, loading }) =>
                 <tr
                   key={ticket.id}
                   onClick={() => onSelectTicket(ticket)}
-                  className="hover:bg-[#181822] cursor-pointer transition-colors group"
+                  className="bg-white hover:bg-[#fbf6e9] cursor-pointer transition-colors group"
                 >
-                  <td className="py-3 px-4 font-mono font-bold text-violet-400 group-hover:text-violet-300">
+                  <td className="py-3 px-4 font-mono font-bold text-red-600 group-hover:underline">
                     TKT-{ticket.id}
                   </td>
-                  <td className="py-3 px-4 font-semibold text-slate-200 group-hover:text-white max-w-xs truncate">
+                  <td className="py-3 px-4 font-bold text-black max-w-xs truncate">
                     {ticket.title}
                   </td>
                   <td className="py-3 px-4">
-                    <span className="inline-flex items-center gap-1 text-[11px] text-slate-400 bg-[#16161e] border border-[#242432] px-2 py-0.5 rounded">
+                    <span className="inline-flex items-center gap-1 text-[11px] font-mono font-semibold text-black bg-[#f1ebd9] border-2 border-black px-2 py-0.5 rounded-md">
                       {ticket.category?.name || 'General'}
                     </span>
                   </td>
@@ -143,27 +143,27 @@ export const TicketTable = ({ tickets, categories, onSelectTicket, loading }) =>
                   <td className="py-3 px-4">
                     <StatusBadge status={ticket.status} />
                   </td>
-                  <td className="py-3 px-4 text-slate-400">
+                  <td className="py-3 px-4 text-black font-medium">
                     <div className="flex items-center gap-1.5">
-                      <div className="w-5 h-5 rounded-full bg-slate-800 text-slate-300 font-bold text-[10px] flex items-center justify-center border border-slate-700">
+                      <div className="w-5 h-5 rounded-full bg-slate-900 text-white font-bold text-[10px] flex items-center justify-center">
                         {ticket.createdBy?.fullName ? ticket.createdBy.fullName.charAt(0) : 'U'}
                       </div>
                       <span className="truncate">{ticket.createdBy?.fullName}</span>
                     </div>
                   </td>
-                  <td className="py-3 px-4 text-slate-400">
+                  <td className="py-3 px-4 text-black font-medium">
                     {ticket.assignedTo ? (
                       <div className="flex items-center gap-1.5">
-                        <div className="w-5 h-5 rounded-full bg-violet-950/80 text-violet-300 font-bold text-[10px] flex items-center justify-center border border-violet-500/30">
+                        <div className="w-5 h-5 rounded-full bg-red-600 text-white font-bold text-[10px] flex items-center justify-center">
                           {ticket.assignedTo.fullName.charAt(0)}
                         </div>
-                        <span className="text-slate-300 truncate">{ticket.assignedTo.fullName}</span>
+                        <span className="text-black font-semibold truncate">{ticket.assignedTo.fullName}</span>
                       </div>
                     ) : (
-                      <span className="text-slate-600 italic">Unassigned</span>
+                      <span className="text-slate-500 italic">Unassigned</span>
                     )}
                   </td>
-                  <td className="py-3 px-4 text-right text-slate-500 font-mono text-[11px]">
+                  <td className="py-3 px-4 text-right text-black font-mono text-[11px] font-medium">
                     {formatDate(ticket.createdAt)}
                   </td>
                 </tr>
