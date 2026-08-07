@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: ticketflow-backend
+    env: docker
+    dockerfilePath: ticketflow-backend/Dockerfile
+    dockerContext: ticketflow-backend
+    plan: free
+    envVars:
+      - key: PORT
+        value: 8080
