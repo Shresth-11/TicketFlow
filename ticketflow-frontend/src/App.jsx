@@ -11,35 +11,21 @@ const ProtectedRoute = ({ children }) => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-slate-900 flex items-center justify-center text-slate-400">
-        <div className="w-8 h-8 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
+      <div className="min-h-screen bg-[#fbf7ee] flex items-center justify-center text-slate-800 font-mono font-bold text-xs">
+        <div className="flex flex-col items-center gap-2">
+          <div className="w-6 h-6 border-2 border-black border-t-transparent rounded-full animate-spin" />
+          <span>Loading TicketFlow...</span>
+        </div>
       </div>
     );
   }
 
   if (!user) {
-    return <Navigate to="/login" replace />;
+    // Redirect unauthenticated users to Home Landing Page
+    return <Navigate to="/" replace />;
   }
 
   return children;
-};
-
-const RootRoute = () => {
-  const { user, loading } = useAuth();
-
-  if (loading) {
-    return (
-      <div className="min-h-screen bg-slate-900 flex items-center justify-center text-slate-400">
-        <div className="w-8 h-8 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
-      </div>
-    );
-  }
-
-  if (user) {
-    return <Navigate to="/dashboard" replace />;
-  }
-
-  return <LandingPage />;
 };
 
 export function App() {
@@ -47,7 +33,9 @@ export function App() {
     <AuthProvider>
       <Router>
         <Routes>
-          <Route path="/" element={<RootRoute />} />
+          {/* Default root path always loads Landing Home Page */}
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/home" element={<LandingPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/signup" element={<SignupPage />} />
           <Route
@@ -58,6 +46,7 @@ export function App() {
               </ProtectedRoute>
             }
           />
+          {/* Unknown routes fall back to Home Landing Page */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Router>
