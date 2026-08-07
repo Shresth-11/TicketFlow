@@ -2,7 +2,7 @@
   "rewrites": [
     {
       "source": "/api/v1/:path*",
-      "destination": "https://ticketflow-backend.onrender.com/api/v1/:path*"
+      "destination": "https://ticketflow-backend-ntfu.onrender.com/api/v1/:path*"
     },
     {
       "source": "/(.*)",
