@@ -1,0 +1,10 @@
+{
+  "buildCommand": "cd ticketflow-frontend && npm install && npm run build",
+  "outputDirectory": "ticketflow-frontend/dist",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
