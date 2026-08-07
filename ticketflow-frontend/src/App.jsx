@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider, useAuth } from './context/AuthContext';
+import { SplashScreen } from './components/SplashScreen';
 import { LandingPage } from './pages/LandingPage';
 import { LoginPage } from './pages/LoginPage';
 import { SignupPage } from './pages/SignupPage';
@@ -21,7 +22,6 @@ const ProtectedRoute = ({ children }) => {
   }
 
   if (!user) {
-    // Redirect unauthenticated users to Home Landing Page
     return <Navigate to="/" replace />;
   }
 
@@ -29,11 +29,13 @@ const ProtectedRoute = ({ children }) => {
 };
 
 export function App() {
+  const [showSplash, setShowSplash] = useState(true);
+
   return (
     <AuthProvider>
+      {showSplash && <SplashScreen onFinish={() => setShowSplash(false)} />}
       <Router>
         <Routes>
-          {/* Default root path always loads Landing Home Page */}
           <Route path="/" element={<LandingPage />} />
           <Route path="/home" element={<LandingPage />} />
           <Route path="/login" element={<LoginPage />} />
@@ -46,7 +48,6 @@ export function App() {
               </ProtectedRoute>
             }
           />
-          {/* Unknown routes fall back to Home Landing Page */}
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Router>
