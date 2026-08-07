@@ -15,7 +15,7 @@ const ProtectedRoute = ({ children }) => {
       <div className="min-h-screen bg-[#fbf7ee] flex items-center justify-center text-slate-800 font-mono font-bold text-xs">
         <div className="flex flex-col items-center gap-2">
           <div className="w-6 h-6 border-2 border-black border-t-transparent rounded-full animate-spin" />
-          <span>Loading TicketFlow...</span>
+          <span>Loading ResolvIT...</span>
         </div>
       </div>
     );

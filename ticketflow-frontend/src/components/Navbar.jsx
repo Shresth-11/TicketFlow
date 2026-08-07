@@ -43,7 +43,7 @@ export const Navbar = () => {
             <LifeBuoy className="w-4 h-4 text-white" />
           </div>
           <span className="text-2xl font-serif font-bold text-red-600 tracking-tight">
-            TicketFlow
+            ResolvIT
           </span>
         </div>
 

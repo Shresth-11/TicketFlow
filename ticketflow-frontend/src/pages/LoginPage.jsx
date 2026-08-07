@@ -37,7 +37,7 @@ export const LoginPage = () => {
 
   const handleDemoFill = (demoEmail) => {
     setEmail(demoEmail);
-    setPassword('TicketFlow2026!');
+    setPassword('ResolvIT2026!');
   };
 
   return (
@@ -49,7 +49,7 @@ export const LoginPage = () => {
           <div className="w-10 h-10 rounded-full bg-red-600 text-white font-bold text-base flex items-center justify-center mx-auto mb-2 shadow-xs">
             <LifeBuoy className="w-5 h-5 text-white" />
           </div>
-          <h1 className="text-2xl font-serif font-bold text-black tracking-tight">Sign in Today</h1>
+          <h1 className="text-2xl font-serif font-bold text-black tracking-tight">Sign in to ResolvIT</h1>
           <p className="text-xs text-slate-700 font-medium">Access enterprise IT service desk portal</p>
         </div>
 
