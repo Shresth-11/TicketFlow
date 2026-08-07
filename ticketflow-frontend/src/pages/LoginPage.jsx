@@ -21,7 +21,15 @@ export const LoginPage = () => {
       await login(email, password);
       navigate('/dashboard');
     } catch (err) {
-      setError(err.response?.data?.message || 'Invalid email or password');
+      if (!err.response) {
+        setError('Backend server is waking up on Render. Please wait 30 seconds and try again!');
+      } else if (err.response.status === 401) {
+        setError('Invalid email or password. Click one of the quick demo buttons below!');
+      } else if (err.response.status >= 500) {
+        setError('Server is initializing database. Please try again in 15 seconds.');
+      } else {
+        setError(err.response?.data?.message || 'Authentication error. Please try again.');
+      }
     } finally {
       setLoading(false);
     }
@@ -47,9 +55,9 @@ export const LoginPage = () => {
 
         {/* Error alert */}
         {error && (
-          <div className="flex items-center gap-2 p-2.5 bg-rose-50 border border-rose-200 text-rose-700 text-xs rounded-md">
-            <AlertCircle className="w-4 h-4 shrink-0" />
-            <span>{error}</span>
+          <div className="flex items-start gap-2 p-2.5 bg-rose-50 border border-rose-200 text-rose-700 text-xs rounded-md">
+            <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
+            <span className="leading-tight">{error}</span>
           </div>
         )}
 
@@ -82,9 +90,16 @@ export const LoginPage = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full py-2 px-4 font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-md shadow-xs transition-colors disabled:opacity-50 mt-1"
+            className="w-full py-2 px-4 font-semibold text-white bg-blue-600 hover:bg-blue-700 rounded-md shadow-xs transition-colors disabled:opacity-50 mt-1 flex items-center justify-center gap-2"
           >
-            {loading ? 'Signing in...' : 'Sign in'}
+            {loading ? (
+              <>
+                <div className="w-3.5 h-3.5 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                <span>Connecting to Server...</span>
+              </>
+            ) : (
+              'Sign in'
+            )}
           </button>
         </form>
 
