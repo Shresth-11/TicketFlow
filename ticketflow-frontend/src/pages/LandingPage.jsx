@@ -11,7 +11,10 @@ import {
   ShieldCheck,
   Inbox,
   Coffee,
-  Smile
+  Smile,
+  CheckCircle2,
+  Key,
+  ShieldAlert
 } from 'lucide-react';
 import { useAuth } from '../context/AuthContext';
 
@@ -28,8 +31,16 @@ export const LandingPage = () => {
     }
   };
 
+  const scrollToSection = (e, id) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-[#fbf7ee] text-slate-900 font-sans flex flex-col selection:bg-red-500 selection:text-white">
+    <div className="min-h-screen bg-[#fbf7ee] text-slate-900 font-sans flex flex-col selection:bg-red-500 selection:text-white scroll-smooth">
       
       {/* Floating Pill Nav Bar matching heyparker.ai */}
       <header className="sticky top-4 z-40 px-4 mb-4">
@@ -45,11 +56,17 @@ export const LandingPage = () => {
             </span>
           </div>
 
-          {/* Center Navigation Links */}
+          {/* Center Navigation Links with Smooth Scroll */}
           <div className="hidden md:flex items-center gap-6 text-xs font-bold text-black">
-            <a href="#features" className="hover:text-red-600 transition-colors">How it works</a>
-            <a href="#demo" className="hover:text-red-600 transition-colors">Demo Portals</a>
-            <a href="#security" className="hover:text-red-600 transition-colors">Security</a>
+            <a href="#features" onClick={(e) => scrollToSection(e, 'features')} className="hover:text-red-600 transition-colors">
+              How it works
+            </a>
+            <a href="#demo" onClick={(e) => scrollToSection(e, 'demo')} className="hover:text-red-600 transition-colors">
+              Demo Portals
+            </a>
+            <a href="#security" onClick={(e) => scrollToSection(e, 'security')} className="hover:text-red-600 transition-colors">
+              Security
+            </a>
           </div>
 
           {/* Right Action Button */}
@@ -131,6 +148,7 @@ export const LandingPage = () => {
 
             <a
               href="#demo"
+              onClick={(e) => scrollToSection(e, 'demo')}
               className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white hover:bg-slate-100 text-black border-2 border-black text-xs font-bold shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] transition-all hover:translate-x-[-2px] hover:translate-y-[-2px]"
             >
               Explore Demo Accounts
@@ -141,7 +159,7 @@ export const LandingPage = () => {
       </section>
 
       {/* Feature Pillars */}
-      <section id="features" className="py-14 bg-[#eae3d2] border-y-2 border-black">
+      <section id="features" className="py-16 bg-[#eae3d2] border-y-2 border-black">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center mb-10 space-y-2">
@@ -260,6 +278,66 @@ export const LandingPage = () => {
                 Sign in as Admin <ChevronRight className="w-3.5 h-3.5" />
               </span>
             </button>
+
+          </div>
+
+        </div>
+      </section>
+
+      {/* Security & Architecture Section */}
+      <section id="security" className="py-16 bg-[#eae3d2] border-t-2 border-black">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+          
+          <div className="text-center space-y-2">
+            <h2 className="text-3xl font-serif font-bold text-black tracking-tight">
+              Enterprise Security Architecture
+            </h2>
+            <p className="text-xs font-medium text-slate-700">
+              Hardened with OWASP security standards and Spring Security 6 stateless architecture
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            
+            <div className="p-5 rounded-2xl bg-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] space-y-2">
+              <div className="flex items-center gap-2 text-red-600 font-bold text-sm font-serif">
+                <Key className="w-4 h-4" />
+                <span>Stateless JWT Authentication</span>
+              </div>
+              <p className="text-xs text-slate-700 font-medium leading-relaxed">
+                Tokens are signed via HMAC-SHA256 with 24-hour expiration, preventing session hijacking and eliminating server-side session state.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] space-y-2">
+              <div className="flex items-center gap-2 text-purple-700 font-bold text-sm font-serif">
+                <ShieldCheck className="w-4 h-4" />
+                <span>IDOR Query Scoping</span>
+              </div>
+              <p className="text-xs text-slate-700 font-medium leading-relaxed">
+                Prevents Insecure Direct Object References by scoping database JPA queries to match the authenticated user ID for employee roles.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] space-y-2">
+              <div className="flex items-center gap-2 text-blue-800 font-bold text-sm font-serif">
+                <ShieldAlert className="w-4 h-4" />
+                <span>Rate Limiting Filter</span>
+              </div>
+              <p className="text-xs text-slate-700 font-medium leading-relaxed">
+                Built-in servlet filter enforces sliding window request limits per client IP to prevent brute-force attacks and queue flooding.
+              </p>
+            </div>
+
+            <div className="p-5 rounded-2xl bg-white border-2 border-black shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] space-y-2">
+              <div className="flex items-center gap-2 text-emerald-800 font-bold text-sm font-serif">
+                <CheckCircle2 className="w-4 h-4" />
+                <span>Method-Level RBAC</span>
+              </div>
+              <p className="text-xs text-slate-700 font-medium leading-relaxed">
+                Spring `@PreAuthorize` annotations restrict agent assignment, ticket status updates, and administrative deletion to authorized roles.
+              </p>
+            </div>
 
           </div>
 
